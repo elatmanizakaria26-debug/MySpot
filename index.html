@@ -2,15 +2,41 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" href="/assets/favicon.png" type="image/png">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" href="/assets/favicon.png?v=1" type="image/png" sizes="32x32">
+  <link rel="icon" href="/assets/favicon.png?v=1" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="/assets/logo.png?v=1">
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MySpot — Lugares reales. Historias verificadas.</title>
-  <meta name="description" content="MySpot: red geo‑social centrada en el mapa. Spots verificados (EXIF+GPS), círculos de privacidad, mapa 2D/3D y modelo de negocio claro. Acceso temprano." />
-  <meta property="og:title" content="MySpot — Lugares reales. Historias verificadas." />
-  <meta property="og:description" content="La red geo‑social donde los lugares se convierten en historias verificables. Únete a la lista de espera." />
-  <meta property="og:type" content="website" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://globalmyspot.com/">
+
+  <!-- SEO -->
+  <meta name="description" content="MySpot: red geo-social centrada en el mapa. Spots verificados (EXIF+GPS), círculos de privacidad, mapa 2D/3D y modelo de negocio claro. Acceso temprano." />
   <meta name="theme-color" content="#0b0f14" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="MySpot — Lugares reales. Historias verificadas." />
+  <meta property="og:description" content="La red geo-social donde los lugares se convierten en historias verificables. Únete a la lista de espera." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://globalmyspot.com" />
+  <meta property="og:site_name" content="MySpot" />
+  <meta property="og:image" content="https://globalmyspot.com/assets/logo.png?v=1" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="800" />
+  <meta property="og:image:height" content="800" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MySpot — Lugares reales. Historias verificadas." />
+  <meta name="twitter:description" content="La red geo-social donde los lugares se convierten en historias verificables. Únete a la lista de espera." />
+  <meta name="twitter:image" content="https://globalmyspot.com/assets/logo.png?v=1" />
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
   <style>
     /* ——— Design tokens (unificados) ——— */
     :root{
@@ -124,7 +150,7 @@
   <header class="hero">
     <div class="scene" aria-hidden="true"><div class="globo"></div></div>
     <section class="card-hero">
-      <span class="badge">🚀 Proyecto en desarrollo · Pre‑semilla</span>
+      <span class="badge">🚀 Proyecto en desarrollo · Pre-semilla</span>
       <h1 class="h1">Lugares reales. <strong>Historias verificadas.</strong></h1>
       <p class="sub">La capa social del mundo físico: un mapa vivo donde cada spot cuenta una historia verificable (EXIF+GPS). Privacidad por círculos (Flujo · Cercano · Cerrado) y una experiencia elegante con scroll multidimensional.</p>
       <div class="metrics" role="list" aria-label="Métricas iniciales">
@@ -156,7 +182,7 @@
     <section id="mercado" class="seccion" style="background:rgba(162,89,255,.05)">
       <div class="container">
         <h2 class="section-title">Mercado y posición</h2>
-        <p class="lead">En el cruce entre la autenticidad que impulsó BeReal y el hueco que dejó Zenly. MySpot redefine la categoría: <em>geo‑social premium</em> con verificación, privacidad y pertenencia real.</p>
+        <p class="lead">En el cruce entre la autenticidad que impulsó BeReal y el hueco que dejó Zenly. MySpot redefine la categoría: <em>geo-social premium</em> con verificación, privacidad y pertenencia real.</p>
       </div>
     </section>
 
@@ -223,7 +249,7 @@
       <div class="container">
         <h2 class="section-title">Para inversores</h2>
         <div class="grid-2">
-          <div class="card"><h3>Oportunidad pre‑semilla</h3><p>Completar MVP, lanzar beta y validar crecimiento. Material (deck/demos) disponible bajo solicitud.</p></div>
+          <div class="card"><h3>Oportunidad pre-semilla</h3><p>Completar MVP, lanzar beta y validar crecimiento. Material (deck/demos) disponible bajo solicitud.</p></div>
           <div class="card"><h3>Próximos hitos</h3><ul class="muted" style="margin:0;padding-left:18px"><li>MVP funcional</li><li>Beta cerrada</li><li>Primeras métricas</li></ul></div>
         </div>
         <div class="center" style="margin-top:20px"><a class="btn primary" href="https://www.linkedin.com/in/zakaria-el-atmani-89085538a/">Agendar reunión</a></div>
@@ -250,15 +276,19 @@
 
   <!-- ——— FOOTER ——— -->
   <footer class="footer">
-    <small>© <span id="anio"></span> MySpot · Geo‑social auténtico.</small>
-    <div class="muted" style="margin-top:6px">Contacto: <a href="mailto:founder@myspot.app" style="color:inherit">founder@myspot.app</a></div>
+    <small>© <span id="anio"></span> MySpot · Geo-social auténtico.</small>
+    <div class="muted" style="margin-top:6px">Contacto: <a href="mailto:contact@globalmyspot.com" style="color:inherit">contact@globalmyspot.com</a></div>
   </footer>
 
   <script>
     document.getElementById('anio').textContent = new Date().getFullYear();
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t){t.scrollIntoView({behavior:'smooth',block:'start'})}})
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        const t=document.querySelector(a.getAttribute('href'));
+        if(t){t.scrollIntoView({behavior:'smooth',block:'start'})}
+      })
     })
   </script>
 </body>
