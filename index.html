@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MySpot — Lugares reales. Historias verificadas.</title>
+
+  <!-- SEO -->
+  <meta name="description" content="MySpot: la red geo-social centrada en el mapa. Spots verificados (EXIF+GPS), privacidad por círculos y experiencia premium." />
+  <meta name="keywords" content="MySpot, geosocial, mapa 3D, spots, EXIF, GPS, autenticidad, privacidad, app social, mapa interactivo, beta" />
+  <link rel="canonical" href="https://globalmyspot.com/" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0b0f14" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="MySpot — Lugares reales. Historias verificadas." />
+  <meta property="og:description" content="Comparte spots verificados en un mapa 2D/3D. Privacidad por círculos: Cerrado, Cercano, Flujo." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://globalmyspot.com/" />
+  <meta property="og:image" content="/public/social-card.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MySpot — Lugares reales. Historias verificadas." />
+  <meta name="twitter:description" content="Mapa social con verificación EXIF+GPS y círculos de privacidad." />
+  <meta name="twitter:image" content="/public/social-card.png" />
+
+  <link rel="icon" href="/public/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" as="style" onload="this.rel='stylesheet'">
+
+  <style>
+    :root {
+      --verde:#00FF85;
+      --morado:#A259FF;
+      --azul:#00D4FF;
+      --fondo:#070A0F;
+      --fondo-2:#0b0f14;
+      --texto:#EAF2FF;
+      --muted:#A7B9CC;
+      --card:rgba(255,255,255,.03);
+      --hairline:1px solid rgba(255,255,255,.08);
+      --grad:linear-gradient(90deg,var(--verde),var(--morado));
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--fondo);color:var(--texto);line-height:1.6}
+
+    .nav{position:sticky;top:0;z-index:30;backdrop-filter:saturate(1.2) blur(12px);background:rgba(7,10,15,.72);border-bottom:var(--hairline)}
+    .wrap{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 18px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+    .brand img{height:32px;display:block;filter:drop-shadow(0 0 10px rgba(162,89,255,.25))}
+    .links a{color:#EAF2FF;text-decoration:none;font-weight:600;opacity:.88;padding:8px 10px;border-radius:10px}
+    .links a:hover{opacity:1;background:rgba(255,255,255,.06)}
+    .cta{background:var(--grad);color:#0b0f14 !important;font-weight:800;opacity:1;border-radius:10px}
+    .social{display:flex;gap:8px;align-items:center}
+    .icon{width:22px;height:22px;opacity:.85}
+
+    .hero{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,var(--fondo-2) 0%, #0a0d12 60%, var(--fondo) 100%)}
+    .card-hero{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:56px;border-radius:20px;background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));backdrop-filter:blur(16px);border:var(--hairline)}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:rgba(162,89,255,.10);border:1px solid rgba(162,89,255,.30);border-radius:999px;font-size:14px;font-weight:700;color:var(--morado)}
+    .badge .lock{width:16px;height:16px;display:inline-block}
+    .h1{font-size:clamp(36px,4.8vw,66px);line-height:1.05;margin:16px 0 12px;font-weight:800}
+    .h1 strong{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .sub{font-size:clamp(16px,1.6vw,20px);color:var(--muted);max-width:900px}
+    .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:28px 0}
+    .metric{padding:24px;text-align:center;background:var(--card);border-radius:20px;border:var(--hairline)}
+    .metric .value{font-size:44px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .metric .label{color:var(--muted);font-weight:700;font-size:13px}
+
+    section.seccion{padding:96px 18px;border-top:var(--hairline)}
+    .container{max-width:1200px;margin:0 auto}
+    h2.section-title{font-size:clamp(30px,3.5vw,46px);font-weight:800;margin:0 0 10px;background:linear-gradient(90deg,#fff,var(--muted));-webkit-background-clip:text;background-clip:text;color:transparent}
+    p.lead{color:var(--muted);max-width:920px}
+    .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;margin-top:36px}
+    .card{padding:26px;background:var(--card);border-radius:20px;border:var(--hairline);backdrop-filter:blur(10px)}
+
+    .footer{text-align:center;padding:36px 18px;color:#c5d3e0;border-top:var(--hairline)}
+
+    /* Animated lock pulse for "lista cerrada" */
+    .lock-pulse{position:absolute;top:-10px;right:-10px;background:var(--grad);width:36px;height:36px;border-radius:999px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 0 rgba(162,89,255,.6);animation:pulse 2.2s infinite}
+    .lock-pulse svg{width:18px;height:18px;fill:#0b0f14}
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(162,89,255,0.55)}
+      70%{box-shadow:0 0 0 16px rgba(162,89,255,0)}
+      100%{box-shadow:0 0 0 0 rgba(162,89,255,0)}
+    }
+
+    @media (max-width:768px){
+      .wrap{flex-direction:column;gap:8px}
+      .card-hero{padding:40px}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="Navegación principal">
+    <div class="wrap">
+      <div class="brand" aria-label="MySpot logo">
+        <img src="/public/logo.svg" alt="MySpot" />
+      </div>
+      <div class="links">
+        <a href="#por-que-ahora">Por qué ahora</a>
+        <a href="#modelo">Modelo</a>
+        <a href="#equipo">Equipo</a>
+        <a href="#lista" class="cta">Acceso temprano</a>
+      </div>
+      <div class="social" aria-label="Redes sociales">
+        <a href="https://www.linkedin.com/in/zakaria-el-atmani-89085538a/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0zM8 8h4.8v2.2h.06c.67-1.27 2.3-2.6 4.74-2.6 5.07 0 6 3.34 6 7.68V24h-5V16.4c0-1.8-.03-4.1-2.5-4.1-2.5 0-2.88 1.95-2.88 3.98V24H8z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/official_myspot/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.9.25 2.4.42.6.24 1 .53 1.5.98.46.46.75.9.98 1.5.17.5.36 1.2.42 2.4.07 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.25 1.9-.42 2.4-.24.6-.53 1-.98 1.5-.46.46-.9.75-1.5.98-.5.17-1.2.36-2.4.42-1.3.07-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.9-.25-2.4-.42-.6-.24-1-.53-1.5-.98-.46-.46-.75-.9-.98-1.5-.17-.5-.36-1.2-.42-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.25-1.9.42-2.4.24-.6.53-1 .98-1.5.46-.46.9-.75 1.5-.98.5-.17 1.2-.36 2.4-.42C8.4 2.2 8.8 2.2 12 2.2z"/><circle cx="12" cy="12" r="3.2"/><circle cx="18.5" cy="5.5" r="1.2"/></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <section class="card-hero">
+      <span class="badge"><span class="lock" aria-hidden="true">🔒</span> Lista cerrada temporalmente</span>
+      <h1 class="h1">Lugares reales. <strong>Historias verificadas.</strong></h1>
+      <p class="sub">Mapa social con verificación EXIF+GPS y círculos de privacidad. Únete a la lista de acceso temprano.</p>
+      <div class="metrics" role="list" aria-label="Métricas">
+        <div class="metric" role="listitem"><div class="value">MVP</div><div class="label">En progreso</div></div>
+        <div class="metric" role="listitem"><div class="value">100%</div><div class="label">Bootstrapped</div></div>
+        <div class="metric" role="listitem"><div class="value">2025</div><div class="label">Beta</div></div>
+      </div>
+
+      <!-- Bloque de saturación con lock pulse -->
+      <div style="position:relative;display:inline-block">
+        <div class="lock-pulse" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 8V6a3 3 0 1 1 6 0v3H9z"/></svg>
+        </div>
+        <form id="early-form" style="margin-top:14px">
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <input id="email" type="email" disabled placeholder="Acceso temporalmente saturado" style="flex:1;min-width:260px;border-radius:12px;border:var(--hairline);background:#0c121a;color:#eaf2fb;padding:14px 12px;opacity:.6;cursor:not-allowed">
+            <button type="button" class="cta" style="border:none;border-radius:12px;padding:14px 18px;cursor:not-allowed;opacity:.6" disabled aria-disabled="true" title="Temporalmente saturado por alta demanda">Temporalmente saturado</button>
+          </div>
+          <p id="msg" style="margin-top:10px;color:#a7f3d0;font-weight:700">
+            Alta demanda: lista de espera temporalmente saturada.<br/>
+            Escríbenos a <a href="mailto:contact@globalmyspot.com" style="color:inherit;text-decoration:underline">contact@globalmyspot.com</a> para asegurar tu lugar.
+          </p>
+        </form>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section id="por-que-ahora" class="seccion">
+      <div class="container">
+        <h2 class="section-title">Por qué ahora</h2>
+        <p class="lead">Autenticidad sobre ruido. MySpot valida ubicación con EXIF+GPS y protege la privacidad con círculos.</p>
+      </div>
+    </section>
+
+    <section id="modelo" class="seccion">
+      <div class="container">
+        <h2 class="section-title">Modelo</h2>
+        <div class="grid-2">
+          <div class="card"><h3>Premium</h3><p>Suscripciones con ventajas y analítica.</p></div>
+          <div class="card"><h3>Publicidad local</h3><p>Spots patrocinados en el mapa para audiencias reales.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="equipo" class="seccion">
+      <div class="container">
+        <h2 class="section-title">Equipo fundador</h2>
+        <div class="grid-2">
+          <div class="card"><h3>Zakaria El Atmani</h3><p class="lead">Fundador — visión, producto y diseño. Lidera el MVP y la expansión inicial.</p></div>
+          <div class="card"><h3>Buscamos cofundador/a</h3><p class="lead">Perfil con hambre de construir: backend/arquitectura o growth con alma de producto.</p>
+            <p><a class="cta" href="mailto:contact@globalmyspot.com" style="padding:12px 18px;display:inline-block;border-radius:10px;text-decoration:none;color:#0b0f14;font-weight:700;background:var(--grad)">Contactar</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>© <span id="anio"></span> MySpot · Geo-social auténtico.</small>
+    <div style="margin-top:6px">Contacto: <a href="mailto:contact@globalmyspot.com" style="color:inherit">contact@globalmyspot.com</a></div>
+  </footer>
+
+  <script>
+    document.getElementById('anio').textContent = new Date().getFullYear();
+    // Nota: Acceso temprano saturado, no se envía formulario.
+  </script>
+</body>
+</html>
