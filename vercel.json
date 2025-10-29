@@ -1,0 +1,34 @@
+{
+  "redirects": [
+    {
+      "source": "http://www.globalmyspot.com/:path*",
+      "destination": "https://globalmyspot.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "http://globalmyspot.com/:path*",
+      "destination": "https://globalmyspot.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "https://www.globalmyspot.com/:path*",
+      "destination": "https://globalmyspot.com/:path*",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    }
+  ]
+}

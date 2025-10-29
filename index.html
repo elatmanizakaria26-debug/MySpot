@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MySpot — Red geo‑social en mapa | Lugares reales, historias verificadas (EXIF+GPS), privacidad por círculos</title>
+
+  <!-- SEO Core -->
+  <meta name="description" content="MySpot es la red geo‑social centrada en el mapa: comparte spots verificados (EXIF+GPS), controla la privacidad por círculos y explora el mundo en 2D/3D. Únete a la beta." />
+  <meta name="keywords" content="MySpot, red social de mapas, geosocial, mapa 3D, mapa 2D, lugares reales, historias verificadas, EXIF, GPS, privacidad, app social, spots, compartir ubicación, autenticidad, beta" />
+  <link rel="canonical" href="https://globalmyspot.com/" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0b0f14" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="MySpot — Lugares reales. Historias verificadas." />
+  <meta property="og:description" content="La red geo‑social donde los lugares se convierten en historias verificables. Spots con EXIF+GPS, privacidad por círculos y mapa 2D/3D." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://globalmyspot.com/" />
+  <meta property="og:image" content="https://globalmyspot.com/og-image.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MySpot — Lugares reales. Historias verificadas." />
+  <meta name="twitter:description" content="Comparte spots verificados con EXIF+GPS en un mapa vivo. Privacidad por círculos y experiencia premium." />
+  <meta name="twitter:image" content="https://globalmyspot.com/og-image.jpg" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Structured Data (Organization + Website) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "MySpot",
+    "url": "https://globalmyspot.com/",
+    "logo": "https://globalmyspot.com/logo.png",
+    "sameAs": [
+      "https://www.linkedin.com/in/zakaria-el-atmani-89085538a/",
+      "https://www.instagram.com/official_myspot/"
+    ],
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "email": "contact@globalmyspot.com",
+      "contactType": "customer support",
+      "availableLanguage": ["es","en"]
+    }]
+  }
+  </script>
+
+  <style>
+    /* ——— Design tokens (unificados) ——— */
+    :root{
+      --verde:#00FF85;
+      --morado:#A259FF;
+      --azul:#00D4FF;
+      --fondo:#070A0F;
+      --fondo-2:#0b0f14;
+      --texto:#EAF2FF;
+      --muted:#A7B9CC;
+      --card:rgba(255,255,255,.03);
+      --radio:20px;
+      --radio-sm:12px;
+      --hairline:1px solid rgba(255,255,255,.08);
+      --t: all .18s cubic-bezier(.4,0,.2,1);
+      --shadow: 0 25px 50px -12px rgba(0,0,0,.35);
+      --grad: linear-gradient(90deg,var(--verde),var(--morado));
+    }
+    *{box-sizing:border-box;transition:var(--t)}
+    html,body{height:100%}
+    body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--fondo);color:var(--texto);line-height:1.6}
+
+    /* ——— Nav ——— */
+    .nav{position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.2) blur(12px);background:rgba(7,10,15,.72);border-bottom:var(--hairline)}
+    .nav .wrap{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 18px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
+    .brand .logo{height:34px;display:block;filter:drop-shadow(0 0 10px rgba(162,89,255,.25))}
+    .nav a{color:#EAF2FF;text-decoration:none;font-weight:600;opacity:.88;padding:8px 10px;border-radius:10px}
+    .nav a:hover{opacity:1;background:rgba(255,255,255,.06)}
+    .nav .cta{background:var(--grad);color:#0b0f14 !important;font-weight:800;opacity:1}
+    .social{display:flex;gap:8px;align-items:center}
+    .icon{width:22px;height:22px;opacity:.85}
+    .icon:hover{opacity:1;transform:translateY(-1px)}
+
+    /* ——— Hero ——— */
+    .hero{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(180deg,var(--fondo-2) 0%, #0a0d12 60%, var(--fondo) 100%)}
+    .scene{position:absolute;inset:-12% -12% -12% -12%;pointer-events:none}
+    .globo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(58vmin,680px);aspect-ratio:1;border-radius:50%;background:url('https://upload.wikimedia.org/wikipedia/commons/0/08/Earthlights_2012.jpg') center/cover no-repeat;mask-image:radial-gradient(circle at 50% 50%, black 60%, transparent 71%);animation:giro 48s linear infinite;box-shadow:inset 0 0 60px rgba(0,0,0,.55),0 20px 100px rgba(0,0,0,.42)}
+    @keyframes giro{to{transform:translate(-50%,-50%) rotate(360deg)}}
+    .card-hero{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:56px;border-radius:var(--radio);background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));backdrop-filter:blur(16px);border:var(--hairline);box-shadow:var(--shadow)}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:rgba(162,89,255,.10);border:1px solid rgba(162,89,255,.30);border-radius:999px;font-size:14px;font-weight:700;color:var(--morado)}
+    .h1{font-size:clamp(36px,4.8vw,66px);line-height:1.05;margin:16px 0 12px;font-weight:800;letter-spacing:-.02em}
+    .h1 strong{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .sub{font-size:clamp(16px,1.6vw,20px);color:var(--muted);max-width:900px}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 20px;border-radius:12px;font-weight:800;text-decoration:none;border:none;cursor:pointer}
+    .btn.primary{background:var(--grad);color:#0b0f14;box-shadow:0 8px 30px rgba(0,255,133,.25)}
+    .btn.secondary{background:rgba(255,255,255,.06);color:var(--texto);border:var(--hairline)}
+
+    /* ——— Sections ——— */
+    section.seccion{padding:96px 18px;border-top:var(--hairline)}
+    .container{max-width:1200px;margin:0 auto}
+    h2.section-title{font-size:clamp(30px,3.5vw,46px);font-weight:800;margin:0 0 10px;background:linear-gradient(90deg,#fff,var(--muted));-webkit-background-clip:text;background-clip:text;color:transparent}
+    p.lead{color:var(--muted);max-width:920px}
+
+    .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;margin-top:36px}
+    .card{padding:26px;background:var(--card);border-radius:var(--radio);border:var(--hairline);backdrop-filter:blur(10px)}
+    .card h3{margin:0 0 10px;font-size:22px}
+
+    /* ——— Metrics & Timeline ——— */
+    .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:28px 0}
+    .metric{padding:24px;text-align:center;background:var(--card);border-radius:var(--radio);border:var(--hairline)}
+    .metric .value{font-size:44px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+    .metric .label{color:var(--muted);font-weight:700;font-size:13px}
+
+    .timeline{position:relative;margin-top:22px}
+    .t-item{display:flex;gap:20px;margin-bottom:28px}
+    .t-dot{width:14px;height:14px;border-radius:50%;background:var(--grad);flex-shrink:0;margin-top:6px}
+    .t-body{flex:1;padding-left:18px;border-left:2px solid rgba(255,255,255,.1)}
+    .t-kicker{color:var(--morado);font-weight:800;font-size:13px;margin-bottom:6px}
+
+    /* ——— Team ——— */
+    .team{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:28px}
+    .member{padding:24px;border:var(--hairline);border-radius:16px;background:rgba(255,255,255,.02)}
+
+    /* ——— Footer ——— */
+    .footer{opacity:.9;text-align:center;padding:36px 18px;color:#c5d3e0;border-top:var(--hairline)}
+
+    /* ——— Utilities ——— */
+    .muted{color:var(--muted)}
+    .center{display:flex;align-items:center;justify-content:center}
+
+    /* ——— Responsive tweaks ——— */
+    @media (max-width:768px){
+      .card-hero{padding:40px}
+      .nav .wrap{flex-direction:column;gap:8px}
+      .cta-row{flex-direction:column}
+    }
+  </style>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://globalmyspot.com/",
+  "name": "MySpot",
+  "inLanguage": "es",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://globalmyspot.com/search?q={query}",
+    "query-input": "required name=query"
+  }
+}
+  </script>
+</head>
+<body>
+  <!-- ——— NAV ——— -->
+  <nav class="nav" aria-label="Navegación principal">
+    <div class="wrap">
+      <div class="brand" aria-label="MySpot logo">
+        <svg class="logo" viewBox="0 0 220 42" xmlns="http://www.w3.org/2000/svg" aria-label="MySpot">
+          <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="var(--verde)"/><stop offset="100%" stop-color="var(--morado)"/></linearGradient></defs>
+          <text x="0" y="32" font-size="30" font-family="Inter, sans-serif" font-weight="800" fill="url(#g)">MySpot</text>
+        </svg>
+      </div>
+      <div class="links">
+        <a href="#por-que-ahora">Por qué ahora</a>
+        <a href="#mercado">Mercado</a>
+        <a href="#modelo">Modelo</a>
+        <a href="#tecnologia">Tecnología</a>
+        <a href="#hoja-de-ruta">Hoja de ruta</a>
+        <a href="#equipo">Equipo</a>
+        <a href="#lista" class="cta">Acceso temprano</a>
+      </div>
+      <div class="social" aria-label="Redes sociales">
+        <a href="https://www.linkedin.com/in/zakaria-el-atmani-89085538a/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0zM8 8h4.8v2.2h.06c.67-1.27 2.3-2.6 4.74-2.6 5.07 0 6 3.34 6 7.68V24h-5V16.4c0-1.8-.03-4.1-2.5-4.1-2.5 0-2.88 1.95-2.88 3.98V24H8z"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/official_myspot/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.9.25 2.4.42.6.24 1 .53 1.5.98.46.46.75.9.98 1.5.17.5.36 1.2.42 2.4.07 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.25 1.9-.42 2.4-.24.6-.53 1-.98 1.5-.46.46-.9.75-1.5.98-.5.17-1.2.36-2.4.42-1.3.07-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.9-.25-2.4-.42-.6-.24-1-.53-1.5-.98-.46-.46-.75-.9-.98-1.5-.17-.5-.36-1.2-.42-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.25-1.9.42-2.4.24-.6.53-1 .98-1.5.46-.46.9-.75 1.5-.98.5-.17 1.2-.36 2.4-.42C8.4 2.2 8.8 2.2 12 2.2m0-2.2C8.7 0 8.3 0 7 0 5.7 0 4.8.2 4 .5c-.9.4-1.7.9-2.5 1.7C.7 3 0 3.8.5 4.7c.3.9.5 1.7.5 3 0 1.3 0 1.7 0 5s0 3.7-.5 5c-.4.9.2 1.7 1 2.5.8.8 1.6 1.3 2.5 1.7.9.3 1.7.5 3 .5s1.7 0 5 0 3.7 0 5 0c1.3 0 2.1-.2 3-.5.9-.4 1.7-.9 2.5-1.7.8-.8 1.3-1.6 1.7-2.5.3-.9.5-1.7.5-3s0-1.7 0-5 0-3.7-.5-5C23.3 1.6 22.5 1 21.7.7 20.8.3 20 0 18.7 0 17.4 0 17 0 13.7 0H12z"/>
+            <circle cx="12" cy="12" r="3.2"/>
+            <circle cx="18.5" cy="5.5" r="1.2"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ——— HERO ——— -->
+  <header class="hero">
+    <div class="scene" aria-hidden="true"><div class="globo"></div></div>
+    <section class="card-hero">
+      <span class="badge">🚀 Proyecto en desarrollo · Pre‑semilla</span>
+      <h1 class="h1">Lugares reales. <strong>Historias verificadas.</strong></h1>
+      <p class="sub">La capa social del mundo físico: un mapa vivo donde cada spot cuenta una historia verificable (EXIF+GPS). Privacidad por círculos (Flujo · Cercano · Cerrado) y una experiencia elegante con scroll multidimensional.</p>
+      <div class="metrics" role="list" aria-label="Métricas iniciales">
+        <div class="metric" role="listitem"><div class="value">MVP</div><div class="label">En progreso</div></div>
+        <div class="metric" role="listitem"><div class="value">100%</div><div class="label">Bootstrapped</div></div>
+        <div class="metric" role="listitem"><div class="value">2025</div><div class="label">Beta inicial</div></div>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="#lista">Quiero ser de los primeros</a>
+        <a class="btn secondary" href="#inversores">Info para inversores</a>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <!-- ——— POR QUÉ AHORA ——— -->
+    <section id="por-que-ahora" class="seccion">
+      <div class="container">
+        <h2 class="section-title">Por qué ahora</h2>
+        <p class="lead">Fatiga ante contenido sintético, perfiles falsos y dopamine hacks. La autenticidad es escasa. MySpot responde con <strong>verificación de ubicación</strong> (EXIF+GPS) y diseño centrado en <strong>personas y lugares reales</strong>. Ideal para quienes buscan una <strong>app geosocial</strong> enfocada en la confianza.</p>
+        <div class="grid-2">
+          <div class="card"><h3>📍 Valor del lugar</h3><p>Los sitios importan. Un spot es contexto, memoria y señal social. Convertimos cada lugar en una historia verificable y compartible en un <em>mapa 2D/3D</em>.</p></div>
+          <div class="card"><h3>🛡️ Privacidad granular</h3><p>Controlas quién ve qué: círculos, radio y visibilidad contextual. Nada de sorpresas raras.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ——— MERCADO ——— -->
+    <section id="mercado" class="seccion" style="background:rgba(162,89,255,.05)">
+      <div class="container">
+        <h2 class="section-title">Mercado y posición</h2>
+        <p class="lead">En el cruce entre la autenticidad que impulsó nuevas redes y el hueco que dejaron los mapas sociales. MySpot redefine la categoría: <em>geo‑social premium</em> con verificación, privacidad y pertenencia real.</p>
+      </div>
+    </section>
+
+    <!-- ——— MODELO ——— -->
+    <section id="modelo" class="seccion">
+      <div class="container">
+        <h2 class="section-title">Modelo de negocio</h2>
+        <div class="grid-2">
+          <div class="card"><h3>Premium & Pro</h3><p>Suscripciones con herramientas de visibilidad, analítica y personalización para usuarios y creadores.</p></div>
+          <div class="card"><h3>Economía de creadores</h3><p>Campañas con perfiles de alta credibilidad y seguidores verificados. Alcance con fundamento, lejos del ruido.</p></div>
+          <div class="card"><h3>Publicidad local en el mapa</h3><p>Spots patrocinados y campañas segmentadas visibles para comunidades reales; selección de creadores por usuarios validados.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ——— TECNOLOGÍA ——— -->
+    <section id="tecnologia" class="seccion" style="background:rgba(7,10,15,.85)">
+      <div class="container">
+        <h2 class="section-title">Tecnología y verificación</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Sistema de verificación</h3>
+            <ul class="muted" style="margin:0;padding-left:18px">
+              <li>Validación EXIF + GPS</li>
+              <li>Reputación de spots</li>
+              <li>Privacidad configurable por usuario</li>
+              <li>Mapa 2D/3D interactivo</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Stack técnico</h3>
+            <p class="muted">Frontend: React/TypeScript · Mobile: React Native · Backend: Node.js · DB: PostgreSQL/PostGIS · Realtime: WebSockets · Storage: S3/CloudFront · Mapas: MapLibre/Mapbox GL</p>
+          </div>
+        </div>
+        <div class="timeline" aria-label="Plan de desarrollo">
+          <div class="t-item"><div class="t-dot"></div><div class="t-body"><div class="t-kicker">Ahora</div><h3 style="margin:0 0 6px">Fase 1 — MVP Core</h3><p class="muted">Usuarios, mapa, creación de spots, verificación básica.</p></div></div>
+          <div class="t-item"><div class="t-dot"></div><div class="t-body"><div class="t-kicker">Próximos 6–9 meses</div><h3 style="margin:0 0 6px">Fase 2 — Beta cerrada</h3><p class="muted">Feedback de usuarios y optimización de experiencia y rendimiento.</p></div></div>
+          <div class="t-item"><div class="t-dot"></div><div class="t-body"><div class="t-kicker">Futuro</div><h3 style="margin:0 0 6px">Fase 3 — Escala</h3><p class="muted">Algoritmos de verificación avanzados y crecimiento por ciudades.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ——— HOJA DE RUTA ——— -->
+    <section id="hoja-de-ruta" class="seccion">
+      <div class="container">
+        <h2 class="section-title">Hoja de ruta (12–18 meses)</h2>
+        <p class="lead">MVP cerrado → Beta en 2 ciudades → Expansión gradual → Primeras vías de monetización.</p>
+      </div>
+    </section>
+
+    <!-- ——— EQUIPO ——— -->
+    <section id="equipo" class="seccion">
+      <div class="container">
+        <h2 class="section-title">Equipo fundador</h2>
+        <div class="team">
+          <div class="member"><h3 style="margin:0 0 6px">Zakaria El Atmani</h3><p class="muted" style="margin:0 0 12px">Fundador — visión, producto y diseño. Lidera el MVP y la expansión inicial.</p></div>
+          <div class="member"><h3 style="margin:0 0 6px">Buscamos cofundador/a</h3><p class="muted">Perfil con hambre de construir: backend/arquitectura o growth con alma de producto.</p><p><a class="btn primary" href="mailto:contact@globalmyspot.com">Contactar</a></p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ——— INVERSORES ——— -->
+    <section id="inversores" class="seccion" style="background:rgba(7,10,15,.9)">
+      <div class="container">
+        <h2 class="section-title">Para inversores</h2>
+        <div class="grid-2">
+          <div class="card"><h3>Oportunidad pre‑semilla</h3><p>Completar MVP, lanzar beta y validar crecimiento. Material (deck/demos) disponible bajo solicitud vía email.</p></div>
+          <div class="card"><h3>Próximos hitos</h3><ul class="muted" style="margin:0;padding-left:18px"><li>MVP funcional</li><li>Beta cerrada</li><li>Primeras métricas</li></ul></div>
+        </div>
+        <!-- CTA de agendar reunión eliminado por solicitud -->
+        <p class="center muted" style="margin-top:20px">Contacto inversores: <a href="mailto:contact@globalmyspot.com" style="color:inherit">contact@globalmyspot.com</a></p>
+      </div>
+    </section>
+
+    <!-- ——— ACCESO TEMPRANO ——— -->
+    <section id="lista" class="seccion">
+      <div class="container">
+        <h2 class="section-title">Acceso temprano</h2>
+        <div class="card">
+          <p class="lead">Apúntate y sé de lxs primerxs en probar la beta y la versión final. Ser early te da mapa antes que nadie y voz en el producto.</p>
+          <form onsubmit="event.preventDefault(); document.getElementById('msg').textContent='¡Hecho! Te avisaremos cuando esté lista la beta.'; this.reset();" style="margin-top:14px">
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <input type="email" required placeholder="tu@email.com" aria-label="Correo" style="flex:1;min-width:220px;border-radius:12px;border:var(--hairline);background:#0c121a;color:#eaf2fb;padding:14px 12px">
+              <button type="submit" class="btn primary">Quiero ser de los primeros</button>
+            </div>
+            <p id="msg" style="margin-top:10px;color:#a7f3d0;font-weight:700"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ——— FOOTER ——— -->
+  <footer class="footer">
+    <div class="social" style="justify-content:center;gap:14px;margin-bottom:10px">
+      <a href="https://www.linkedin.com/in/zakaria-el-atmani-89085538a/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0zM8 8h4.8v2.2h.06c.67-1.27 2.3-2.6 4.74-2.6 5.07 0 6 3.34 6 7.68V24h-5V16.4c0-1.8-.03-4.1-2.5-4.1-2.5 0-2.88 1.95-2.88 3.98V24H8z"/>
+        </svg>
+      </a>
+      <a href="https://www.instagram.com/official_myspot/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.9.25 2.4.42.6.24 1 .53 1.5.98.46.46.75.9.98 1.5.17.5.36 1.2.42 2.4.07 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.25 1.9-.42 2.4-.24.6-.53 1-.98 1.5-.46.46-.9.75-1.5.98-.5.17-1.2.36-2.4.42-1.3.07-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.9-.25-2.4-.42-.6-.24-1-.53-1.5-.98-.46-.46-.75-.9-.98-1.5-.17-.5-.36-1.2-.42-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.25-1.9.42-2.4.24-.6.53-1 .98-1.5.46-.46.9-.75 1.5-.98.5-.17 1.2-.36 2.4-.42C8.4 2.2 8.8 2.2 12 2.2m0-2.2C8.7 0 8.3 0 7 0 5.7 0 4.8.2 4 .5c-.9.4-1.7.9-2.5 1.7C.7 3 0 3.8.5 4.7c.3.9.5 1.7.5 3 0 1.3 0 1.7 0 5s0 3.7-.5 5c-.4.9.2 1.7 1 2.5.8.8 1.6 1.3 2.5 1.7.9.3 1.7.5 3 .5s1.7 0 5 0 3.7 0 5 0c1.3 0 2.1-.2 3-.5.9-.4 1.7-.9 2.5-1.7.8-.8 1.3-1.6 1.7-2.5.3-.9.5-1.7.5-3s0-1.7 0-5 0-3.7-.5-5C23.3 1.6 22.5 1 21.7.7 20.8.3 20 0 18.7 0 17.4 0 17 0 13.7 0H12z"/>
+          <circle cx="12" cy="12" r="3.2"/>
+          <circle cx="18.5" cy="5.5" r="1.2"/>
+        </svg>
+      </a>
+    </div>
+    <small>© <span id="anio"></span> MySpot · Geo‑social auténtico.</small>
+    <div class="muted" style="margin-top:6px">Contacto: <a href="mailto:contact@globalmyspot.com" style="color:inherit">contact@globalmyspot.com</a></div>
+  </footer>
+
+  <script>
+    document.getElementById('anio').textContent = new Date().getFullYear();
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        const t=document.querySelector(a.getAttribute('href'));
+        if(t){t.scrollIntoView({behavior:'smooth',block:'start'})}
+      });
+    });
+  </script>
+</body>
+</html>
